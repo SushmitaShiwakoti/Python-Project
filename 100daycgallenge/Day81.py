@@ -1,0 +1,23 @@
+import datetime
+import calendar
+
+def day_occur_time(year):
+    days = ['MONDAY', 'TUESDAY','WEDNESDAY',
+            'THURSDAY', 'FRIDAY', 'SATURDAY', 'SUNDAY']
+
+    L = [52 for i in range(7)]
+
+    pos = -1
+    day = datetime.datetime(year, month = 1, day = 1).strftime('%A')
+    for i in range(7):
+        if day == days[i]:
+            pos = i
+
+    if calendar.isleap(year):
+        L[pos] += 1
+        L[(pos+1)%7] +=1
+
+    else:
+        L[pos] +=1
+    for i in range(7):
+        print(days[i], L[i])

@@ -1,0 +1,2 @@
+Hello everyone I am susmita shiwakoti. Today i learned about file handling.
+File handling is an important part of any web application.

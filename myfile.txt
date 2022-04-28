@@ -1,0 +1,2 @@
+Today i learnedd about two funcion seek(), Tell() and how we can use them.
+i am susmita siwakoti. 
