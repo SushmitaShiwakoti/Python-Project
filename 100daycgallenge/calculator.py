@@ -1,19 +1,3 @@
-# import turtle
-# t= turtle.Turtle()
-# s= turtle.Screen()
-# t.speed(0)
-# s.bgcolor("black")
-
-# for i in range(240):
-#     t.color("aqua")
-#     t.circle(i*0.6)
-#     t.color("white")
-#     t.circle(i*0.4)
-#     t.right(3)
-#     t.forward(3)
-# t.hideturtle()
-# turtle.done()
-
 import tkinter as tk
 
 LIGHT_GRAY ="#F5F5F5"
@@ -38,10 +22,10 @@ class Calculator:
 
 
     def create_display_label(self):
-        total_label = tk.Label(self.display_frame, text=self.total_expression, anchar= tk.E, bg=LIGHT_GRAY,  fg=LABEL_COLOR, padx=24, font=SMALL_FONT_STYLE)
+        total_label = tk.Label(self.display_frame, text=self.total_expression, bg=LIGHT_GRAY,  fg=LABEL_COLOR, padx=24, font=SMALL_FONT_STYLE)
         total_label.pack(expand=True, fill="both")
 
-        label = tk.Label(self.display_frame, text=self.current_expression, anchar= tk.E, bg=LIGHT_GRAY,  fg=LABEL_COLOR, padx=24, font=LARGE_FONT_STYLE)
+        label = tk.Label(self.display_frame, text=self.current_expression, bg=LIGHT_GRAY,  fg=LABEL_COLOR, padx=24, font=LARGE_FONT_STYLE)
         label.pack(expand=True, fill="both")
         
         return total_label,label
@@ -63,6 +47,3 @@ class Calculator:
 if __name__ == '__main__':
     calc = Calculator()
     calc.run()
-
-
-
