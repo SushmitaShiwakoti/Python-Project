@@ -1,9 +1,15 @@
+from cgitb import text
 import tkinter as tk
 
 LIGHT_GRAY ="#F5F5F5"
 LABEL_COLOR = "#25265E"
 SMALL_FONT_STYLE =  ("Arial", 16)
 LARGE_FONT_STYLE =  ("Arial", 40,'bold')
+WHITE = "#FFFFFF"
+DIGITS_FONT_STYLE = ("Arial", 24,"bold")
+DEFULT_FONT_STYLE =("Arial", 20)
+OFF_WHITE ="#F8FAFF"
+LIGHT_BLUE ="#CCEDFF"
 
 class Calculator:
 
@@ -16,12 +22,28 @@ class Calculator:
         self.total_expression = "0"
         self.current_expression ="0"
         self.display_frame = self.create_display_frame()
+        self.digits ={
+            7:(1,1),8:(1,2), 9:(1,3),
+            4:(2,1), 5:(2,2), 6:(2,3),
+            1:(3,1),2:(3,2), 3:(3,3),
+            0:(4,2), '.':(4,1)
 
-        self.total_label, self.label= self.create_display_label()
+        }
+
+        self.operations = {"/": "\u00F7", "*": "\u00D7", "-":"_", "+": "+"}
+        self.total_label, self.label= self.create_display_labels()
         self.buttons_frame = self.create_buttons_frame()
+        self.create_digit_buttons()
+        self.create_operator_buttons()
+        self.create_special_buttons()
 
 
-    def create_display_label(self):
+    def create_special_buttons(self):
+        self.create_clear_button()
+        self.create_equals_button()
+
+
+    def create_display_labels(self):
         total_label = tk.Label(self.display_frame, text=self.total_expression, bg=LIGHT_GRAY,  fg=LABEL_COLOR, padx=24, font=SMALL_FONT_STYLE)
         total_label.pack(expand=True, fill="both")
 
@@ -34,6 +56,30 @@ class Calculator:
         frame = tk.Frame(self.window, height=221, bg=LIGHT_GRAY)
         frame.pack(expand=True, fill="both")
         return frame
+
+    def create_digit_buttons(self):
+        for digit, grid_value in self.digits.items():
+            button = tk.Button(self.buttons_frame, text=str(digit), bg=WHITE, fg=LABEL_COLOR, font=DIGITS_FONT_STYLE, borderwidth=0)
+            button.grid(row=grid_value[0], column=grid_value[1], sticky=tk.NSEW)
+
+    def create_operator_buttons(self):
+        i=0
+        for operator, symbol in self.operations.items():
+            button = tk.Button(self.buttons_frame,text= symbol, bg=OFF_WHITE,fg=LABEL_COLOR, font=DEFULT_FONT_STYLE, borderwidth=0)
+
+            button.grid(row=i, column=4, sticky=tk.NSEW)
+            i+=1
+
+    def create_clear_button(self):
+          button = tk.Button(self.buttons_frame,text= "c", bg=OFF_WHITE,fg=LABEL_COLOR, font=DEFULT_FONT_STYLE, borderwidth=0)
+
+          button.grid(row=0, column=1, columnspan=3, sticky=tk.NSEW)
+
+    def create_equals_button(self):
+        button = tk.Button(self.buttons_frame,text= "=", bg=LIGHT_BLUE,fg=LABEL_COLOR, font=DEFULT_FONT_STYLE, borderwidth=0)
+
+        button.grid(row=4, column=3, columnspan=2, sticky=tk.NSEW)
+            
 
     def create_buttons_frame(self):
         frame = tk.Frame(self.window)
